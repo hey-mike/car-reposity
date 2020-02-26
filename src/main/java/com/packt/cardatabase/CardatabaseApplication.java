@@ -6,22 +6,23 @@ import com.packt.cardatabase.domain.Owner;
 import com.packt.cardatabase.domain.OwnerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 public class CardatabaseApplication {
     private static final Logger logger = LoggerFactory.getLogger(CardatabaseApplication.class);
 
-    @Autowired
-    private CarRepository carRepository;
+    private final CarRepository carRepository;
 
-    @Autowired
-    private OwnerRepository ownerRepository;
+    private final OwnerRepository ownerRepository;
+
+    public CardatabaseApplication(CarRepository carRepository, OwnerRepository ownerRepository) {
+        this.carRepository = carRepository;
+        this.ownerRepository = ownerRepository;
+    }
 
     public static void main(String[] args) {
         // After adding this comment the application is restarted
