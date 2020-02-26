@@ -1,9 +1,6 @@
 package com.packt.cardatabase;
 
-import com.packt.cardatabase.domain.Car;
-import com.packt.cardatabase.domain.CarRepository;
-import com.packt.cardatabase.domain.Owner;
-import com.packt.cardatabase.domain.OwnerRepository;
+import com.packt.cardatabase.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -19,9 +16,12 @@ public class CardatabaseApplication {
 
     private final OwnerRepository ownerRepository;
 
-    public CardatabaseApplication(CarRepository carRepository, OwnerRepository ownerRepository) {
+    private final UserRepository userRepository;
+
+    public CardatabaseApplication(CarRepository carRepository, OwnerRepository ownerRepository, UserRepository userRepository) {
         this.carRepository = carRepository;
         this.ownerRepository = ownerRepository;
+        this.userRepository = userRepository;
     }
 
     public static void main(String[] args) {
@@ -49,6 +49,16 @@ public class CardatabaseApplication {
             car = new Car("Toyota", "Prius", "Silver",
                     "KKO-0212", 2018, 39000, owner2);
             carRepository.save(car);
+
+
+            // username: user password: user
+            userRepository.save(new User("user",
+                    "$2a$04$1.YhMIgNX/8TkCKGFUONWO1waedKhQ5KrnB30fl0Q01QKqmzLf.Zi",
+                    "USER"));
+            // username: admin password: admin
+            userRepository.save(new User("admin",
+                    "$2a$04$KNLUwOWHVQZVpXyMBNc7JOzbLiBjb9Tk9bP7KNcPI12ICuvzXQQKG",
+                    "ADMIN"));
         };
     }
 }
