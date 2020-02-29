@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 public class AuthenticationFilter extends GenericFilterBean {
+
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException,
-            ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
+            throws IOException, ServletException {
         Authentication authentication = AuthenticationService.getAuthentication((HttpServletRequest) request);
 
-        SecurityContextHolder.getContext().
-                setAuthentication(authentication);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request, response);
     }
 }

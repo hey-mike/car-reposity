@@ -27,7 +27,6 @@ public class CardatabaseApplication {
     public static void main(String[] args) {
         // After adding this comment the application is restarted
         SpringApplication.run(CardatabaseApplication.class, args);
-        logger.info("Hello Spring Boot");
     }
 
     @Bean
